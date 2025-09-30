@@ -1,0 +1,13 @@
+.git
+.github
+.env
+.DS_Store
+.vscode
+.idea
+.vagrant
+.box_dump
+.editorconfig
+.phpunit.result.cache
+.scrutinizer.yml
+vendor
+node_modules
