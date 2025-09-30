@@ -1,6 +1,6 @@
 services:
   expose:
-    image: expose-server:latest
+    image: jaspis/expose-server:v1.0
     extra_hosts:
       - "host.docker.internal:host-gateway"
     ports:
