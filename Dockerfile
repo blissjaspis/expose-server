@@ -34,7 +34,7 @@ RUN composer dump-autoload -o && \
     chmod 755 docker-entrypoint.sh
 
 ENV port=8080
-ENV domain=localhost
+ENV domain=tunnel.jaspis.me
 ENV username=username
 ENV exposeConfigPath=/src/config/expose-server.php
 
