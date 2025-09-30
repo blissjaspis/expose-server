@@ -2,8 +2,8 @@ FROM php:8.3-cli
 
 # Install dependencies and clean up in one layer
 RUN apt-get update && \
-    apt-get install -y git libzip-dev zip && \
-    docker-php-ext-install zip && \
+    apt-get install -y git libzip-dev zip libicu-dev && \
+    docker-php-ext-install zip intl && \
     rm -rf /var/lib/apt/lists/*
 
 # Get latest Composer
@@ -19,11 +19,10 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global advice.detachedHead false
 
 # Copy dependency files first for better cache utilization
-COPY composer.json ./
+COPY composer.json composer.lock ./
 
 # Install PHP dependencies (including dev dependencies needed for admin UI)
-# Using update since there's no composer.lock file
-RUN composer update -o --prefer-dist --no-scripts --no-interaction
+RUN composer install -o --prefer-dist --no-scripts --no-interaction
 
 # Copy application code
 COPY . .

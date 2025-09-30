@@ -1,7 +1,6 @@
 services:
   expose:
     image: jaspis/expose-server:v1.0
-    name: expose-server
     extra_hosts:
       - "host.docker.internal:host-gateway"
     ports:
@@ -13,3 +12,9 @@ services:
     restart: always
     volumes:
       - ./database/expose.db:/root/.expose
+    networks:
+      - rigel-network
+
+networks:
+  rigel-network:
+    external: true
